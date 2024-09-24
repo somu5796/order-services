@@ -12,26 +12,33 @@ public class Orders {
 
 
     @Id
+//    @Column(name = "orderId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
-    private Long productId;
-    private String productName;
+    private Long oid;
+
+//    @Column(name = "productId")
+    private Long pid;
+
+//    @Column(name = "productName")
+    private String name;
+
+//    @Column(name = "quantity")
     private Integer quantity;
 
     public Orders() {
     }
 
     public Orders(Long productId, String productName, Integer quantity) {
-        this.productId = productId;
-        this.productName = productName;
+        this.pid = productId;
+        this.name = productName;
         this.quantity = quantity;
     }
 
     // Optionally, if you want to allow setting orderId as well
     public Orders(Long orderId, Long productId, String productName, Integer quantity) {
-        this.orderId = orderId; // Typically, you wouldn't set this manually
-        this.productId = productId;
-        this.productName = productName;
+        this.oid = orderId; // Typically, you wouldn't set this manually
+        this.pid = productId;
+        this.name = productName;
         this.quantity = quantity;
     }
 }

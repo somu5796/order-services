@@ -17,13 +17,13 @@ public class OrderServiceManagerImpl {
     private OrderRepository orderRepository;
     public String saveOrders(OrderRequest orderRequest){
          Orders order = orderRepository.save( mapDtoToentity(orderRequest));
-         return order!=null? order.getOrderId().toString():null;
+         return order!=null? order.getOid().toString():null;
     }
 
     private Orders mapDtoToentity(OrderRequest orderRequest) {
         return Orders.builder()
-                .productId(orderRequest.getProductId())
-                .productName(orderRequest.getProductName())
+                .pid(orderRequest.getProductId())
+                .name(orderRequest.getProductName())
                 .quantity(orderRequest.getQuantity())
                 .build();
     }
@@ -33,9 +33,10 @@ public class OrderServiceManagerImpl {
     }
 
     private OrdersResponse mapEntityToDto(Orders orders) {
-        return OrdersResponse.builder().productId(orders.getProductId())
-                .productName(orders.getProductName())
+        return OrdersResponse.builder().productId(orders.getPid())
+                .productName(orders.getName())
                 .quantity(orders.getQuantity())
+                .orderId(orders.getOid())
                 .build();
     }
 }
